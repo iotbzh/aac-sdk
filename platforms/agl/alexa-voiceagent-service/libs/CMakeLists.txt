@@ -24,13 +24,20 @@ add_aace_library(AACEPhoneControlPlatform)
 add_aace_library(AACEGStreamerAudio)
 
 function(add_avs_library libname imppath)
+
     PROJECT_TARGET_ADD(${libname})
     add_library(${libname} SHARED IMPORTED GLOBAL)
     # Set LABELS and IMPORTED_LOCATION for AGL app-templates
+
+    get_filename_component(realname ${imppath} REALPATH)
+    get_filename_component(basename ${imppath} NAME)
+
     set_target_properties(${libname} PROPERTIES
-        LABELS LIBRARY
-        IMPORTED_LOCATION ${imppath}
+        IMPORTED_LOCATION ${realname}
     )
+
+    configure_file( ${realname} ${CMAKE_BINARY_DIR}/package/lib/${basename} COPYONLY)
+
 endfunction()
 
 add_avs_library(ACL ${AAC_HOME}/lib/libACL.so)
@@ -66,7 +73,7 @@ add_avs_library(SpeechSynthesizer ${AAC_HOME}/lib/libSpeechSynthesizer.so)
 add_avs_library(TemplateRuntime ${AAC_HOME}/lib/libTemplateRuntime.so)
 #add_avs_library(curl ${AAC_HOME}/lib/libcurl.so.4.5.0)
 add_avs_library(curl ${AAC_HOME}/lib/libcurl.so.4)
-#add_avs_library(nghttp2 ${AAC_HOME}/lib/libnghttp2.so.14.16.1)
+#add_avs_library(nghttp2 ${AAC_HOME}/lib/libnghttp2.so.14.16)
 add_avs_library(nghttp2 ${AAC_HOME}/lib/libnghttp2.so.14)
 #add_avs_library(opus ${AAC_HOME}/lib/libopus.so.0.6.1)
 add_avs_library(opus ${AAC_HOME}/lib/libopus.so.0)
