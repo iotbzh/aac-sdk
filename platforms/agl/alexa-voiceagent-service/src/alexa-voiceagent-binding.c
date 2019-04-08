@@ -99,7 +99,7 @@ int afbBindingEntry(afb_dynapi* apiHandle) {
     const char* dirList = getenv("CONTROL_CONFIG_PATH");
     if (!dirList) dirList = CONTROL_CONFIG_PATH;
 
-    const char* configPath = CtlConfigSearch(apiHandle, dirList, "");
+    const char* configPath = CtlConfigSearch(apiHandle, dirList, "alexa");
     if (!configPath) {
         AFB_ApiError(apiHandle, "CtlPreInit: No %s* config found in %s ", GetBinderName(), dirList);
         return ERROR;
