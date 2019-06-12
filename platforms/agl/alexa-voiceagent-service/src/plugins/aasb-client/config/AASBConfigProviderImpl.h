@@ -20,8 +20,7 @@
 
 #include <memory>
 #include <string>
-
-#include <afb-definitions.h>
+#include <ctl-plugin.h>
 
 #include "interfaces/utilities/logging/ILogger.h"
 
@@ -41,7 +40,7 @@ public:
      */
     static std::shared_ptr<AASBConfigProviderImpl> create(
         std::shared_ptr<agl::common::interfaces::ILogger> logger,
-        AFB_ApiT api);
+        afb_api_t api);
 
     /// @name IConfigurationProvider Functions
     /// @{
@@ -62,7 +61,7 @@ public:
     /// @}
 
 private:
-    AASBConfigProviderImpl(std::shared_ptr<agl::common::interfaces::ILogger> logger, AFB_ApiT api);
+    AASBConfigProviderImpl(std::shared_ptr<agl::common::interfaces::ILogger> logger, afb_api_t api);
 
     /**
      * Initialize the configuration object from given file path containing
@@ -87,7 +86,7 @@ private:
     std::shared_ptr<agl::common::interfaces::ILogger> m_logger;
 
     /// AFB API object.
-    AFB_ApiT m_api;
+    afb_api_t m_api;
 
     /// Configuration Data
     /// @{

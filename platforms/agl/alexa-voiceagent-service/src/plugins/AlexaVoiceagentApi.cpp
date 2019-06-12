@@ -99,7 +99,7 @@ CTLP_ONLOAD(plugin, ret) {
 CTLP_INIT(plugin, ret) {
     sAFBLogger = agl::utilities::logging::Logger::create(plugin->api);
     if (!sAFBLogger) {
-        AFB_ApiError(plugin->api, "alexa-voiceagent-api: Failed to create AFB Logger.");
+        AFB_API_ERROR(plugin->api, "alexa-voiceagent-api: Failed to create AFB Logger.");
         return -1;
     }
 
@@ -217,7 +217,7 @@ CTLP_CAPI(setVoiceAgentId, source, argsJ, eventJ) {
     std::string voiceAgentId = document[agl::alexa::JSON_ATTR_VOICEAGENT_ID.c_str()].GetString();
     sAlexaCapabilityRouter->setVoiceAgentId(voiceAgentId);
 
-    AFB_ReqSuccess(source->request, NULL, NULL);
+    afb_req_success(source->request, NULL, NULL);
     sAFBLogger->log(Level::INFO, TAG, "setVoiceAgentId completed");
     return 0;
 }
@@ -254,7 +254,7 @@ CTLP_CAPI(setRefreshToken, source, argsJ, eventJ) {
     // ACTION_CBL_GET_REFRESH_TOKEN directive is blocked waiting for this response.
     sAlexaCapabilityRouter->didReceiveGetRefreshTokenResponse();
 
-    AFB_ReqSuccess(source->request, NULL, NULL);
+    afb_req_success(source->request, NULL, NULL);
     sAFBLogger->log(Level::DEBUG, TAG, "setRefreshToken completed");
     return 0;
 }
@@ -287,7 +287,7 @@ CTLP_CAPI(setAuthToken, source, argsJ, eventJ) {
     sAASBRequestHandler->onReceivedEvent(
         aasb::bridge::TOPIC_AUTH_PROVIDER, aasb::bridge::ACTION_SET_AUTH_TOKEN, authToken);
 
-    AFB_ReqSuccess(source->request, NULL, NULL);
+    afb_req_success(source->request, NULL, NULL);
     sAFBLogger->log(Level::DEBUG, TAG, "setAuthToken completed");
     return 0;
 }
@@ -317,7 +317,7 @@ CTLP_CAPI(subscribe, source, argsJ, eventJ) {
     }
 
     sAFBLogger->log(Level::DEBUG, TAG, "subscribed to all alexa-va events");
-    AFB_ReqSuccess(source->request, NULL, NULL);
+    afb_req_success(source->request, NULL, NULL);
     return 0;
 }
 
@@ -340,7 +340,7 @@ CTLP_CAPI(subscribeToCBLEvents, source, argsJ, eventJ) {
         aasb::bridge::TOPIC_CBL, aasb::bridge::ACTION_CBL_START, "");    
     
     sAFBLogger->log(Level::DEBUG, TAG, "subscribed to all CBL events");
-    AFB_ReqSuccess(source->request, NULL, NULL);
+    afb_req_success(source->request, NULL, NULL);
     return 0;
 }
 
@@ -352,7 +352,7 @@ CTLP_CAPI(startListening, source, argsJ, eventJ) {
     }
 
     sAFBLogger->log(Level::DEBUG, TAG, "startListening initiated");
-    AFB_ReqSuccess(source->request, NULL, NULL);
+    afb_req_success(source->request, NULL, NULL);
     return 0;
 }
 
