@@ -67,7 +67,6 @@ PROJECT_TARGET_ADD(alexa-voiceagent-api)
 
     # Library dependencies (include updates automatically)
     TARGET_LINK_LIBRARIES(${TARGET_NAME}
-        afb-helpers
         AlexaAutoServicesBridgeLib
         ${GLIB_PKG_LIBRARIES}
         ${link_libraries}
@@ -103,7 +102,6 @@ PROJECT_TARGET_ADD(alexa-voiceagent-api)
         )
 
         TARGET_LINK_LIBRARIES(${TARGET_NAME}_Test
-            afb-helpers
             libgtest
             libgmock
             ${GLIB_PKG_LIBRARIES}

@@ -31,7 +31,7 @@ namespace afb {
 
 class AFBApiImpl : public agl::common::interfaces::IAFBApi {
 public:
-    static std::unique_ptr<AFBApiImpl> create(AFB_ApiT api);
+    static std::unique_ptr<AFBApiImpl> create(afb_api_t api);
 
     ~AFBApiImpl();
 
@@ -49,10 +49,10 @@ public:
         override;
 
 private:
-    AFBApiImpl(AFB_ApiT api);
+    AFBApiImpl(afb_api_t api);
 
     // AFB API Binding
-    AFB_ApiT mApi;
+    afb_api_t mApi;
 
     // Logger
     std::shared_ptr<agl::common::interfaces::ILogger> mLogger;

@@ -41,11 +41,11 @@ static std::string ALEXA_CONFIG_FILE_NAME = "AlexaAutoCoreEngineConfig.json";
 
 std::shared_ptr<AASBConfigProviderImpl> AASBConfigProviderImpl::create(
     std::shared_ptr<agl::common::interfaces::ILogger> logger,
-    AFB_ApiT api) {
+    afb_api_t api) {
     return std::shared_ptr<AASBConfigProviderImpl>(new AASBConfigProviderImpl(logger, api));
 }
 
-AASBConfigProviderImpl::AASBConfigProviderImpl(std::shared_ptr<agl::common::interfaces::ILogger> logger, AFB_ApiT api) :
+AASBConfigProviderImpl::AASBConfigProviderImpl(std::shared_ptr<agl::common::interfaces::ILogger> logger, afb_api_t api) :
         m_logger(logger),
         m_api(api),
         m_enableWakewordByDefault(false),
@@ -186,12 +186,12 @@ void AASBConfigProviderImpl::initConfigFromFile(const std::string& fileName) {
 }
 
 // GetBindingDirPath() method provided by AGL SDK crashes every single time.
-// It turns out that on latest AGL platforms, GetBindingDirPath(AFB_ApiT) version
+// It turns out that on latest AGL platforms, GetBindingDirPath(afb_api_t) version
 // is supposed to be the correct version. However when we include filescan-utils.h
-// it compiles a version without "AFB_ApiT" parameter. For now, I have made a
-// copy of this method here which accepts "AFB_ApiT" parameter.
+// it compiles a version without "afb_api_t" parameter. For now, I have made a
+// copy of this method here which accepts "afb_api_t" parameter.
 // TODO: Fix it
-std::string GetBindingDirectoryPath(AFB_ApiT api) {
+std::string GetBindingDirectoryPath(afb_api_t api) {
     // A file description should not be greater than 999.999.999
     char fd_link[CONTROL_MAXPATH_LEN];
     char retdir[CONTROL_MAXPATH_LEN];

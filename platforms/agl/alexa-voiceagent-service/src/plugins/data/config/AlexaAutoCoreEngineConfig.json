@@ -1,9 +1,9 @@
 {
   "deviceInfo":
   {
-    "clientId":"<YOUR_CLIENT_ID>",
-    "deviceSerialNumber":"<YOUR_SERIAL_NUMBER>",
-    "productId":"<YOUR_PRODUCT_ID>"
+    "clientId":"amzn1.application-oa2-client.7724d6dd35ab46d38cd11beae55c1245",
+    "deviceSerialNumber":"123456789",
+    "productId":"AGL_master"
   },
   "libcurlUtils":
   {
@@ -55,7 +55,7 @@
     "currentLocation": "36.1363,-115.1513"
   },
   "aace.audio": {
-    "speechRecognizer": "hw:ep812ch",
+    "speechRecognizer":"hw:HD",
     "speechSynthesizer": "navigation",
     "audioPlayer": "emergency"
   },
